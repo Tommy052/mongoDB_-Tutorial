@@ -3,6 +3,9 @@ const blogRouter = Router();
 const { Blog } = require('../models/Blog');
 const {User} = require("../models/User")
 const mongoose = require('mongoose');
+const {commentRouter} = require('./Comment')
+
+blogRouter.use('/:blogid/comment',commentRouter);
 
 blogRouter.post('/', async(req,res) => {
   try{

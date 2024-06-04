@@ -23,6 +23,7 @@ const server = async() => {
     })
     app.use('/user',userRouter);
     app.use('/blog',blogRouter);
+
     app.listen((3000),()=>{
       console.log("nodemon start");
     })
