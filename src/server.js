@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const {userRouter} = require('./routers/User')
+const {userRouter} = require('./routers/User');
+const { blogRouter } = require("./routers/Blog");
 
 const app = express();
     
@@ -21,6 +22,7 @@ const server = async() => {
     
     })
     app.use('/user',userRouter);
+    app.use('/blog',blogRouter);
     app.listen((3000),()=>{
       console.log("nodemon start");
     })
