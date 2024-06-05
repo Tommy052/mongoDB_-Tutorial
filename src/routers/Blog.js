@@ -8,10 +8,10 @@ blogRouter.use('/:blogid/comment',commentRouter);
 
 blogRouter.post('/', async(req,res) => {
   try{
-    const {title, context,islive, userid} = req.body;
+    const {title, content,islive, userid} = req.body;
     console.log(title);
     if(typeof title !== "string") return res.status(400).send({err: "title is required!!!"})
-    if(typeof context !== "string") return res.status(400).send({err: "context is required"})
+    if(typeof content !== "string") return res.status(400).send({err: "content is required"})
     if(islive && islive !== "Boolean") return res.status(400).send({err: "islive is required"})
     if(!mongoose.isValidObjectId(userid)) return res.status(400).send({ error: 'error!!!!!' });
     const user = await User.findById(userid);
@@ -53,13 +53,13 @@ blogRouter.put('/:blogid', async(req,res) => {
     const {blogid} = req.params;
     if (!mongoose.isValidObjectId(blogid))
       return res.status(400).send({ error: 'error!!!!!' });
-    const {title, context} = req.body;
+    const {title, content} = req.body;
     if(typeof title !== "string") return res.status(400).send({err: "title is required!!!"})
-    if(typeof context !== "string") return res.status(400).send({err: "context is required"})
+    if(typeof content !== "string") return res.status(400).send({err: "content is required"})
     
     const blog = await Blog.findOneAndUpdate(
       {_id:blogid},
-      {title,context},
+      {title,content},
       {new : true}
     )
     return res.send({blog})

@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const {userRouter,blogRouter} = require('./routers');
-
+const {generateFakeData} = require("../facker")
 const app = express();
     
 app.use(express.json())
@@ -20,6 +20,7 @@ const server = async() => {
       res.send('<p>some html!!!</p>')
     
     })
+    generateFakeData(100,10,30);
     app.use('/user',userRouter);
     app.use('/blog',blogRouter);
 
